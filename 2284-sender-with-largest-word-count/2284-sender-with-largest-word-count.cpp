@@ -10,7 +10,7 @@ public:
         return c+1;
     }
     string largestWordCount(vector<string>& messages, vector<string>& senders) {
-        unordered_map<string,int> hash;
+        map<string,int> hash;
         for(int i=0;i<senders.size();i++)
         {
             hash[senders[i]]+=wc(messages[i]);
@@ -25,9 +25,7 @@ public:
                    ans=it.first;
             }
         }
-        vector<string> v;
-        for(auto it:hash) if(it.second==max) v.push_back(it.first);
-        sort(v.begin(),v.end());
-        return v[v.size()-1];
+        
+        return ans;
     }
 };
