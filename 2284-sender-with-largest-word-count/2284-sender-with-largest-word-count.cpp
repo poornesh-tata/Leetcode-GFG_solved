@@ -19,9 +19,10 @@ public:
         string ans;
         for(auto it:hash)
         {
-            if(it.second>max)
+            if(it.second>=max)
             {
                 max=it.second;
+                   ans=it.first;
             }
         }
         vector<string> v;
