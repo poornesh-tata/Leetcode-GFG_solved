@@ -1,18 +1,18 @@
 class Solution {
 public:
-    static bool cmp(pair<string,int> a,pair<string,int> b)
+    static bool cmp(pair<int,string>a,pair<int,string> b)
     {
-        return a.second>b.second;
+        return a.first>b.first;
     }
     vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
         vector<string> ans;
-        vector<pair<string,int>> v;
+        vector<pair<int,string>> v;
         for(int i=0;i<names.size();i++)
         {
-            v.push_back({names[i],heights[i]});
+            v.push_back({heights[i],names[i]});
         }
         sort(v.begin(),v.end(),cmp);
-        for(auto it:v) ans.push_back(it.first);
+        for(auto it:v) ans.push_back(it.second);
         return ans;
     }
 };
