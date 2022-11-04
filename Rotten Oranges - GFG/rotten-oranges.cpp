@@ -6,7 +6,6 @@ using namespace std;
 class Solution 
 {
     public:
-    //Function to find minimum time required to rot all oranges. 
     int bfs(vector<vector<int>>table)
     {
         int max=0;
@@ -19,7 +18,6 @@ class Solution
 	        {
 	            if(table[i][j]==2)
 	            {
-	               // vis[i][j]=1;
 	                q.push({{i,j},0});
 	            }
 	        }
@@ -40,7 +38,6 @@ class Solution
 	            if(nrow>=0 and nrow<n and ncol>=0 and ncol<m and
 	                                     table[nrow][ncol]==1)
 	            {
-	               // vis[nrow][ncol]=1;
 	                table[nrow][ncol]=2;
 	                q.push({{nrow,ncol},y+1});
 	            }
@@ -59,11 +56,7 @@ class Solution
 	    return max;
     }
     int orangesRotting(vector<vector<int>>& grid) {
-        // Code here
-        int n=grid.size();
-        int m=grid[0].size();
 	    vector<vector<int>> table=grid;
-	   // vector<vector<int>> vis(n,vector<int> (m,0));
 	    return bfs(table);
     }
 };
