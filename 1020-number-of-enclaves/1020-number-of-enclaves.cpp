@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void bfs(vector<vector<int>> grid,vector<vector<int>>&vis,int r,int c,int row[],int col[])
+    void bfs(vector<vector<int>> &grid,vector<vector<int>>&vis,int r,int c,int row[],int col[])
     {
         int n=grid.size();
         int m=grid[0].size();
@@ -31,26 +31,17 @@ public:
         vector<vector<int>> vis(n,vector<int>(m,0));
         int row[]={-1,0,1,0};
         int col[]={0,1,0,-1};
-        for(int i=0;i<m;i++)
-        {
-            if(grid[0][i]==1  and vis[0][i]==0)
-            {
-                bfs(grid,vis,0,i,row,col);
-            }
-            if(grid[n-1][i]==1 and vis[n-1][i]==0)
-            {
-                bfs(grid,vis,n-1,i,row,col);
-            }
-        }
         for(int i=0;i<n;i++)
         {
-            if(grid[i][0]==1 and vis[i][0]==0)
+            for(int j=0;j<m;j++)
             {
-                bfs(grid,vis,i,0,row,col);
-            }
-            if(grid[i][m-1]==1 and vis[i][m-1]==0)
-            {
-                bfs(grid,vis,i,m-1,row,col);
+                if(i==0 or i==n-1 or j==0 or j==m-1)
+                {
+                    if(!vis[i][j] and grid[i][j]==1)
+                    {
+                        bfs(grid,vis,i,j,row,col);
+                    }
+                }
             }
         }
         int c=0;
