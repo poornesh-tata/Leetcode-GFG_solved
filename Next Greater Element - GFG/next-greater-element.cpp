@@ -4,45 +4,38 @@ using namespace std;
 
 
 // } Driver Code Ends
-class Solution
-{
-    public:
-    //Function to find the next greater element for each element of the array.
-    vector<long long> nextLargerElement(vector<long long> arr, int n){
+// User Function Template for C++ solution
+
+class Solution {
+  public:
+    vector<long long> nextLargerElement(vector<long long> &arr, int n){
         // Your code here
-        vector<long long> ans;
-        ans.push_back(-1);
-        stack<long long> st;
-        st.push(arr[n-1]);
+        vector<long long> v;
+        stack<int> s;
+        s.push(arr[n-1]);
+        v.push_back(-1);
         for(int i=n-2;i>=0;i--)
         {
-            if(st.empty()) ans.push_back(-1);
-            else if(st.top()>arr[i])
+            if(s.empty())
             {
-                ans.push_back(st.top());
-                st.push(arr[i]);
+                s.push(arr[i]);
+                v.push_back(-1);
+            }
+            else if(s.top()>arr[i])
+            {
+                v.push_back(s.top());
+                s.push(arr[i]);
             }
             else
             {
-                while(!st.empty())
-                {
-                    st.pop();
-                    if(!st.empty() and st.top()>arr[i])
-                    {
-                        ans.push_back(st.top());
-                        st.push(arr[i]);
-                        break;
-                    }
-                }
-                if(st.empty())
-                {
-                    ans.push_back(-1);
-                    st.push(arr[i]);
-                }
+                while(!s.empty() and s.top()<arr[i]) s.pop();
+                if(s.empty()) v.push_back(-1);
+                else v.push_back(s.top());
+                s.push(arr[i]);
             }
         }
-        reverse(ans.begin(),ans.end());
-        return ans;
+        reverse(v.begin(),v.end());
+        return v;
     }
 };
 
@@ -61,11 +54,13 @@ int main()
         for(int i=0;i<n;i++)
             cin>>arr[i];
         
-        Solution obj;
-        vector <long long> res = obj.nextLargerElement(arr, n);
+        Solution ob;
+        
+        vector <long long> res = ob.nextLargerElement(arr, n);
         for (long long i : res) cout << i << " ";
         cout<<endl;
     }
 	return 0;
 }
+
 // } Driver Code Ends
