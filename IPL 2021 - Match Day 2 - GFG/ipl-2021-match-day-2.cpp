@@ -6,29 +6,41 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    vector<int> max_of_subarrays(vector<int> arr, int n, int k) {
+    vector<int> max_of_subarrays(vector<int> nums, int n, int k) {
         // your code here
-        vector<int> v;
-        int maax=arr[0];
-        for(int i=1;i<k;i++)
+        if(k==1) return nums;
+        vector<int> ans;
+        deque<pair<int,int>> dq;
+        for(int i=0;i<k;i++)
         {
-            maax=max(arr[i],maax);
+            if(dq.empty()) dq.push_back({nums[i],i});
+            else if(dq.back().first<nums[i])
+            {
+                while(!dq.empty() and dq.back().first<nums[i])
+                {
+                    dq.pop_back();
+                }
+                dq.push_back({nums[i],i});
+            }
+            else dq.push_back({nums[i],i});
         }
-        v.push_back(maax);
+        ans.push_back(dq.front().first);
         for(int i=k;i<n;i++)
         {
-            if(arr[i]>=maax) maax=arr[i];
-            else if(arr[i-k]==maax)
+            if(dq.empty()) dq.push_back({nums[i],i});
+            else if(dq.back().first<nums[i])
             {
-                maax=arr[i-k+1];
-                for(int j=i-k+2;j<=i;j++)
+                while(!dq.empty() and dq.back().first<nums[i])
                 {
-                    maax=max(arr[j],maax);
+                    dq.pop_back();
                 }
+                dq.push_back({nums[i],i});
             }
-            v.push_back(maax);
+            else dq.push_back({nums[i],i});
+            while(dq.front().second<=(i-k)) dq.pop_front();
+            ans.push_back(dq.front().first);
         }
-        return v;
+        return ans;
     }
 };
 
