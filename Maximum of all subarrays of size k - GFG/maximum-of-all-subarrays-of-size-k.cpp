@@ -14,7 +14,7 @@ class Solution
     //Function to find maximum of each subarray of size k.
     vector <int> max_of_subarrays(int *arr, int n, int k)
     {
-        /*This was code which was better than brute force but i has O(n*2) time complexity
+        /*This was code which was better than brute force but it has O(n*2) time complexity
         in worst case.
         Below there is another solution where we use deque which is optimised solution */
         
