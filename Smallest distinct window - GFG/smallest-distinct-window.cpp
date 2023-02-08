@@ -10,8 +10,9 @@ class Solution{
     {
         // Your code goes here   
         int i=0,j=0,count=0,ans=INT_MAX;
-        unordered_map<int,int> hash,temp;
-        for(auto it:str) hash[it]++;
+        unordered_set<int> hash(str.begin(),str.end());
+        unordered_map<int,int>temp;
+        
         count=hash.size();
         
         for(int i=0;i<str.size();i++)
