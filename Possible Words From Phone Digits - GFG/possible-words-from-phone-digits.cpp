@@ -13,20 +13,20 @@ using namespace std;
 class Solution
 {
     public:
-    vector<string> f(string &str,vector<string> &ans)
+    void f(vector<string>&ans,int digits[],string s,int i,int n,map<int,string> &hash)
     {
-        vector<string> a;
-        for(int i=0;i<ans.size();i++)
+        if(i>=n)
         {
-            for(int j=0;j<str.size();j++)
-            {
-                string temp="";
-                temp+=ans[i];
-                temp+=str[j];
-                a.push_back(temp);
-            }
+            ans.push_back(s);
+            return ;
         }
-        return a;
+        string temp=hash[digits[i]];
+        for(int j=0;j<temp.size();j++)
+        {
+            s+=temp[j];
+            f(ans,digits,s,i+1,n,hash);
+            s.pop_back();
+        }
     }
     //Function to find list of all words possible by pressing given numbers.
     vector<string> possibleWords(int digits[], int N)
@@ -39,20 +39,7 @@ class Solution
         vector<string> ans;
         int size=N;
         if(size==0) return {};
-        if(size>=1)
-        {
-            for(auto it:hash[digits[0]])
-            {
-                string t="";
-                t+=it;
-                ans.push_back(t);
-            }
-            if(size==1) return ans;
-        }
-        for(int i=1;i<size;i++)
-        {
-            ans=f(hash[digits[i]],ans);
-        }
+        f(ans,digits,s,0,size,hash);
         return ans;
     }
 };
