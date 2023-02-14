@@ -20,24 +20,29 @@ class Solution
 	    int sx=KnightPos[0],sy=KnightPos[1];
 	    int dx=TargetPos[0],dy=TargetPos[1];
 	    vector<vector<int>> vis(n,vector<int>(n,0));
-	    queue<pair<pair<int,int>,int>> q;
-	    q.push({{sx,sy},0});
+	    queue<pair<int,int>> q;
+	    q.push({sx,sy});
+	    int d=0;
 	    
 	    while(!q.empty())
 	    {
-	        auto x=q.front().first;
-	        int d=q.front().second;
-	        q.pop();
-	        for(int i=0;i<8;i++)
+	        int size=q.size();d++;
+	        for(int i=0;i<size;i++)
 	        {
-	            int nx=x.first+row[i];
-	            int ny=x.second+col[i];
-	            if(nx==dx and ny==dy) return d+1;
-	            if(isvalid(nx,ny,n) and !vis[nx][ny])
-	            {
-	                q.push({{nx,ny},d+1});
-	                vis[nx][ny]=1;
-	            }
+    	        int x=q.front().first;
+    	        int y=q.front().second;
+    	        q.pop();
+    	        for(int i=0;i<8;i++)
+    	        {
+    	            int nx=x+row[i];
+    	            int ny=y+col[i];
+    	            if(nx==dx and ny==dy) return d;
+    	            if(isvalid(nx,ny,n) and !vis[nx][ny])
+    	            {
+    	                q.push({nx,ny});
+    	                vis[nx][ny]=1;
+    	            }
+    	        }
 	        }
 	    }
 	    return 0;
