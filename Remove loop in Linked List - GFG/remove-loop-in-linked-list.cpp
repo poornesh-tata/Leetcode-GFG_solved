@@ -90,6 +90,7 @@ class Solution
             if(slow==fast)
             {
                 slow=head;
+                // if loop was present at the starting node.
                 if(slow!=fast)
                 {
                     while(slow->next!=fast->next)
@@ -100,6 +101,7 @@ class Solution
                     fast->next=NULL;
                 }
                 else
+                // i.e. go to last node because first node was the start of loop
                 {
                     while(fast->next!=slow) fast=fast->next;
                     fast->next=NULL;
