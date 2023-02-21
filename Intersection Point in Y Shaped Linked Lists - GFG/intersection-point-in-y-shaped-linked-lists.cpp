@@ -98,6 +98,9 @@ int intersectPoint(Node* head1, Node* head2)
         c1++;
     }
     int x=c1-c2; ptr1=head1,ptr2=head2;
+    // Move pointer of greater length to c1-c2 positions ...
+    // So moving both the pointers simultaneously makes both intersect each other if they have
+    // intersection points else we return -1;
     if(x>0)
     {
         while(x--)
