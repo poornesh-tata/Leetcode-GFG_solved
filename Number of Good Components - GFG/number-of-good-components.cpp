@@ -10,67 +10,36 @@ using namespace std;
 
 class Solution {
   public:
-    int count(int i,vector<vector<int>>& adj,vector<int> vis)
+    void dfs(int i,vector<vector<int>>& adj,vector<int> &vis,int &n,int &e)
     {
         vis[i]=1;
-        int c=1;
-        queue<int>q;
-        q.push(i);
-        while(!q.empty())
+        n++;
+        e+=adj[i].size();
+        for(auto &it:adj[i])
         {
-            int x=q.front();
-            q.pop();
-            for(auto it:adj[x])
-            {
-                if(!vis[it])
-                {
-                    q.push(it);
-                    vis[it]=1;
-                    c++;
-                }
-            }
+           if(!vis[it])
+           {
+                dfs(it,adj,vis,n,e);
+           }
         }
-        return c;
-    }
-    bool bfs(int i,int c,vector<vector<int>>& adj,vector<int> &vis)
-    {
-        bool ans=true;
-        vis[i]=1;
-        queue<int>q;
-        q.push(i);
-        while(!q.empty())
-        {
-            int x=q.front();
-            q.pop();
-            for(auto it:adj[x])
-            {
-                if(!vis[it])
-                {
-                    vis[it]=1;
-                    if(adj[it].size()!=c-1)
-                    {
-                        ans=false;
-                    }
-                    q.push(it);
-                }
-            }
-        }
-        return ans;
     }
     int findNumberOfGoodComponent(int V, vector<vector<int>>& adj) {
         // code here
-        int n=adj.size(); int ans=0,c=0;
-        vector<int> vis(n,0);
-        // cout<<n<<endl;
-        
-        for(int i=1;i<n;i++)
+        int ans=0;
+        vector<int> vis(V+1,0);
+        for(int i=1;i<=V;i++)
         {
-            // cout<<i<<" "<<vis[i]<<endl;
             if(!vis[i])
             {
-                c=count(i,adj,vis);
-                // cout<<i<<"->"<<c<<endl;
-                if(bfs(i,c,adj,vis)) ans++;
+                int n=0,e=0;
+                dfs(i,adj,vis,n,e);
+                n=(n*(n-1))/2;
+                e=e/2;
+                // cout<<i<<" "<<n<<" "<<e<<endl;
+                if(e == n)
+                {
+                    ans++;
+                }
             }
         }
         return ans;
