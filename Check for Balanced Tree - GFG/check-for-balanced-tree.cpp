@@ -109,14 +109,20 @@ class Solution{
         if(root==NULL) return 0;
         int left=height(root->left);
         int right=height(root->right);
-        if(left==-1 or right==-1) return -1;
-        if(abs(left-right)>1) return -1;
+        // if(left==-1 or right==-1) return -1;
+        // if(abs(left-right)>1) return -1;
         return max(left,right)+1;
     }
     bool isBalanced(Node *root)
     {
         //  Your Code here
-        return (height(root)==-1?false:true);
+        if(root==NULL) return true;
+        int lh=height(root->left);
+        int rh=height(root->right);
+        if(abs(lh-rh)>1) return false;
+        if(!isBalanced(root->left)) return false;
+        if(!isBalanced(root->right)) return false;
+        return true;
     }
 };
 
