@@ -148,18 +148,12 @@ public:
     vector <int> boundary(Node *root)
     {
         //Your code here
-        if(root==NULL )
-        {
-            return {};
-        }
+        if(root==NULL ) return {};
         vector<int> ans;
         ans.push_back(root->data);
-        if(root->left==NULL and root->right==NULL)
-        {
-            return ans;
-        }
         LeftNode(root->left,ans);
-        LeafNode(root,ans);
+        LeafNode(root->left,ans);
+        LeafNode(root->right,ans);
         RightNode(root->right,ans);
         return ans;
     }
