@@ -18,7 +18,7 @@ class Solution {
     }
     void dfs(int i,int j,vector<vector<int>>& matrix,vector<vector<int>>& vis,int row[],int col[])
     {
-        // if(vis[i][j]) return ;
+        if(vis[i][j]) return ;
         vis[i][j]=1;
         for(int z=0;z<4;z++)
         {
@@ -58,8 +58,7 @@ class Solution {
                 }
             }
         }
-        
-        
+
         return count;
     }
 };
