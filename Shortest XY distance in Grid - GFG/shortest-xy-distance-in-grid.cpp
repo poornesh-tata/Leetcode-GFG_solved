@@ -13,20 +13,16 @@ class Solution {
         if(row<0 or col<0 or row>=n or col>=m) return false;
         return true;
     }
-    int distance(int x,int y,int nrow, int ncol)
-    {
-        return abs(x-nrow)+abs(y-ncol);
-    }
     int shortestXYDist(vector<vector<char>> grid, int n, int m) {
-        queue<pair<pair<int,int>,pair<int,int>>> q; int ans=INT_MAX;
-        
+        // code here
+        queue<pair<pair<int,int>,int>> q; int ans=INT_MAX;
         vector<vector<int>> vis(n,vector<int>(m,0));
         
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
-                if(grid[i][j]=='X') q.push({{i,j},{i,j}});
+                if(grid[i][j]=='X') q.push({{i,j},1});
             }
         }
         int row[]={-1,0,1,0};
@@ -38,18 +34,18 @@ class Solution {
             q.pop();
             for(int i=0;i<4;i++)
             {
-                int nrow=b.first+row[i];
-                int ncol=b.second+col[i];
+                int nrow=a.first+row[i];
+                int ncol=a.second+col[i];
                 if(isvalid(n,m,nrow,ncol) and !vis[nrow][ncol])
                 {
                     if(grid[nrow][ncol]=='Y')
                     {
-                        ans=min(ans,distance(a.first,a.second,nrow,ncol));
+                        ans=min(ans,b);
                         break;
                     }
                     else
                     {
-                        q.push({{a.first,a.second},{nrow,ncol}});
+                        q.push({{nrow,ncol},b+1});
                         vis[nrow][ncol]=1;
                     }
                 }
