@@ -70,7 +70,7 @@ public:
         Node* node=root; int sum=0;
         while(node->data!=target)
         {
-            if(node->left==NULL and node->right==NULL) return -1;
+            // if(node->left==NULL and node->right==NULL) return -1;
             if(node->data<target )
             {
                 if(node->right)
