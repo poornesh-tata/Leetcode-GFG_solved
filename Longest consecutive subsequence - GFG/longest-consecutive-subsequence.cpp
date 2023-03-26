@@ -13,23 +13,43 @@ class Solution{
     int findLongestConseqSubseq(int nums[], int n)
     {
       //Your code here
-        if(n==0) return 0;
-        sort(nums,nums+n); int ans=INT_MIN; int count=0;
-        for(int i=0;i<n-1;i++)
+      
+        unordered_set<int> hash(nums,nums+n); int ans=INT_MIN;
+        for(auto it:hash)
         {
-            if(nums[i]==nums[i+1]) continue;
-            if(nums[i]==nums[i+1]-1)
+            if(hash.find(it-1)==hash.end())
             {
-                count++;
-            }
-            else
-            {
-                ans=max(ans,count+1);
-                count=0;
+                int x=it; int count=0;
+                while(hash.find(x)!=hash.end())
+                {
+                    count++;
+                    x++;
+                }
+                ans=max(ans,count);
             }
         }
-        ans=max(ans,count+1);
         return ans;
+        
+      
+        // O(N*logN)+O(N) == O(N*logN)
+        
+        // if(n==0) return 0;
+        // sort(nums,nums+n); int ans=INT_MIN; int count=0;
+        // for(int i=0;i<n-1;i++)
+        // {
+        //     if(nums[i]==nums[i+1]) continue;
+        //     if(nums[i]==nums[i+1]-1)
+        //     {
+        //         count++;
+        //     }
+        //     else
+        //     {
+        //         ans=max(ans,count+1);
+        //         count=0;
+        //     }
+        // }
+        // ans=max(ans,count+1);
+        // return ans;
     }
 };
 
