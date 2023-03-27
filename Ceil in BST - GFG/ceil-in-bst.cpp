@@ -99,26 +99,26 @@ int main() {
 // User function Template for C++
 
 // Function to return the ceil of given number in BST.
-int findCeil(Node* root, int x) {
+int findCeil(Node* root, int input) {
+    if (root == NULL) return -1;
     // Your code here
-    if(root==NULL) return -1;
-    priority_queue <int, vector<int>, greater<int>> pq; Node* node=root;
-    if(root->data>x) pq.push(root->data);
-    if(node->left and root->data>x) node = node->left;
-    else if(node->right and root->data<x) node = node->right;
-    
-    while(node)
+    int ceil = -1;
+    while(root)
     {
-        if(node->data>=x) pq.push(node->data);
-        if(node->data<x) node=node->right;
-        else node=node->left;
+        if(root->data == input)
+        {
+            ceil = root->data;
+            return ceil;
+        }
+        if(input > root->data)
+        {
+            root = root->right;
+        }
+        else
+        {
+            ceil = root->data;
+            root = root->left;
+        }
     }
-    // while(!pq.empty())
-    // {
-    //     cout<<pq.top()<<" ";
-    //     pq.pop();
-    // }
-    // cout<<endl;
-    if(pq.empty()) return -1;
-    return pq.top();
-}
+    return ceil;
+};
