@@ -13,27 +13,24 @@ class Solution
     void booleanMatrix(vector<vector<int> > &matrix)
     {
         // code here 
-        int n=matrix.size(); int m=matrix[0].size();
-        queue<pair<int,int>> q;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(matrix[i][j]) q.push({i,j});
+        int n=matrix.size(),m=matrix[0].size();
+
+        vector<bool> dp1(matrix.size(),false);
+        vector<bool> dp2(matrix[0].size(),false);
+
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < m ; j++){
+                if(matrix[i][j] == 1){
+                    dp1[i] = true;
+                    dp2[j] = true;
+                }
             }
         }
-        while(!q.empty())
-        {
-            int r = q.front().first;
-            int c = q.front().second;
-            q.pop();
-            for(int i=0;i<n;i++)
-            {
-                matrix[i][c]=1;
-            }
-            for(int i=0;i<m;i++)
-            {
-                matrix[r][i]=1;
+
+        for(int i = 0 ; i < n; i++){
+            for(int j = 0 ; j < m ; j++){
+                if(dp1[i] || dp2[j])
+                    matrix[i][j] = 1;
             }
         }
     }
