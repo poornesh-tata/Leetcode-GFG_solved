@@ -8,6 +8,7 @@ class Solution {
   public:
     bool isStraightHand(int N, int groupSize, vector<int> &hand) {
         // code here
+        if(N % groupSize!=0) return false; 
         if(groupSize==1)return true; map<int,int>mp; int ans=0;
         
         for(int i=0;i<N;i++)mp[hand[i]]++;
