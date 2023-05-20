@@ -8,28 +8,27 @@ class Solution {
   public:
     bool isStraightHand(int N, int groupSize, vector<int> &hand) {
         // code here
-        if(N % groupSize!=0) return false;
+        if(groupSize==1)return true; map<int,int>mp; int ans=0;
         
-        unordered_map<int,int> hash;
-        for(auto it:hand) hash[it]++;
-        sort(hand.begin(),hand.end());
+        for(int i=0;i<N;i++)mp[hand[i]]++;
         
-        int temp=groupSize; int c=0;
-        for(int i=0;i<N;i++)
+        for(auto it:mp)
         {
-            if(hash[hand[i]]<=0) continue;
-            int val = hand[i];
-            for(int i=0;i<groupSize;i++)
+            int a=it.first; int c=1;
+            while(mp.find(a)!=mp.end() and c<=groupSize)
             {
-                if(hash.find(val)==hash.end())
-                {
-                    return false;
+                mp[a]--;
+                if(mp[a]==0){
+                    mp.erase(a);
                 }
-                hash[val]--;
-                val++;
+                a++; c++;
+            }
+            if(c>groupSize)
+            {
+                ans++;
             }
         }
-        return true;
+        return ans*groupSize==N;
     }
 };
 
