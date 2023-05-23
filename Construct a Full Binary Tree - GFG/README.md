@@ -1,28 +1,43 @@
 # Construct a Full Binary Tree
 ## Medium
-<div class="problems_problem_content__Xm_eO"><p style="text-align: justify;"><span style="font-size: 18px;">Given two arrays that represent Preorder traversals of a Full binary tree <strong>preOrder[]</strong> and its mirror tree <strong>preOrderMirror[]</strong>, your task is to complete the function&nbsp;<strong>constructBinaryTree()</strong>, that&nbsp;constructs the full binary tree using these two Preorder traversals.</span></p>
-<p style="text-align: justify;"><span style="font-size: 16px;"><strong>N</strong></span><span style="font-size: 18px;"><strong>ote</strong>: It is not possible to construct a general binary tree using these two traversal. But it is possible to create a full binary tree using the above traversals without any ambiguity.</span></p>
-<p style="text-align: justify;"><strong><span style="font-size: 18px;">Example 1:</span></strong></p>
-<pre><span style="font-size: 18px;"><strong>Input :</strong>
-preOrder[] = {0,1,2}
-preOrderMirror[] = {0,2,1} </span>
+<div class="problems_problem_content__Xm_eO"><p style="text-align:justify"><span style="font-size:20px">Given two arrays that represent Preorder traversals of a Full binary tree <strong>preOrder[]</strong> and its mirror tree <strong>preOrderMirror()</strong>, your task is to complete the function&nbsp;<strong>constructBinaryTree()</strong>, that&nbsp;constructs the full binary tree using these two Preorder traversals.</span></p>
 
-<span style="font-size: 18px;"><strong>Output :</strong></span><span style="font-size: 18px;">
-                0
-              /   \
-             1     2<br></span><span style="font-size: 18px;"><strong>Explanation :<br></strong><span style="font-size: 14pt;">Tree in the output and it's mirror tree matches the </span></span><span style="font-size: 14pt;">preOrder and preOrderMirror.</span></pre>
-<p><span style="font-size: 18px;"><strong>Example 2:</strong></span></p>
-<pre><span style="font-size: 18px;"><strong>Input :</strong>  
-preOrder[] = {1,2,4,5,3,6,7}
-preOrderMirror[] = {1,3,7,6,2,5,4}
+<p><span style="font-size:20px">Examples:</span></p>
 
-<strong>Output :  </strong>        
-&nbsp;                1
+<pre><span style="font-size:18px">Input :  preOrder[] = {1,2,4,5,3,6,7}
+         preOrderMirror[] = {1,3,7,6,2,5,4}
+
+Output :          1
                /    \
               2      3
             /   \   /  \
-           4     5 6    7<br></span><strong><span style="font-size: 14pt;">Explanation :</span><br></strong><span style="font-size: 14pt;">Tree in the output and it's mirror tree matches the </span><span style="font-size: 14pt;">preOrder and preOrderMirror.</span></pre>
-<p><span style="font-size: 18px;"><strong>Your Task:</strong></span></p>
-<p><span style="font-size: 18px;">You don't need to read, input, or print anything. Your task is to complete the function&nbsp;<strong>constructBTree</strong><strong>,&nbsp;</strong>The function takes three arguments as input, first the array&nbsp;that represent Preorder traversals of a Full binary tree&nbsp;<strong>preOrder[],&nbsp;</strong>second the array that represents the preorder traversal of<strong>&nbsp;</strong>its mirror tree&nbsp;<strong>preOrderMirror[]&nbsp;</strong>and last the&nbsp;<strong>size</strong>&nbsp;of both the array,and returns root of the full binary tree.</span></p>
-<p><span style="font-size: 18px;"><strong>Expected Time Complexity:</strong>&nbsp;O(N^2)<br><strong>Expected Auxiliary Space:</strong> O(N), where N indicates number of nodes.</span></p>
-<p><span style="font-size: 18px;"><strong>Constraints:</strong></span><br><span style="font-size: 20px;">1&nbsp;</span><span style="font-size: 18px;">&lt;= Number of Nodes &lt;= 10<sup>3</sup></span></p></div>
+           4     5 6    7</span>
+</pre>
+
+<p style="text-align:justify"><span style="font-size:16px"><strong>Note</strong>: It is not possible to construct a general binary tree using these two traversal. But it is possible to create a full binary tree using the above traversals without any ambiguity. For more details refer to&nbsp;<a href="http://www.geeksforgeeks.org/if-you-are-given-two-traversal-sequences-can-you-construct-the-binary-tree/">this</a>&nbsp;article.</span></p>
+
+<p><span style="font-size:20px"><strong>Input</strong>:<br>
+The function takes three arguments as input, first the array&nbsp;that represent Preorder traversals of a Full binary tree <strong>preOrder[], </strong>second the array that represents the preorder traversal of<strong>&nbsp;</strong>its mirror tree <strong>preOrderMirror()&nbsp;</strong>and last the <strong>size</strong> of both the array.<br>
+There will be <strong>T&nbsp;</strong>test cases and for each test case the function will be called separately.<br>
+<br>
+<strong>Output:</strong><br>
+For each test case the function must return the root to the new binary tree formed. Ouput will be the inorder traversal of the binary tree.<br>
+<br>
+<strong>Constraints:</strong><br>
+1&lt;=T&lt;=500<br>
+1&lt;=N&lt;=10<sup>3</sup><br>
+<br>
+<strong>Example:<br>
+Input:</strong><br>
+2<br>
+3<br>
+0 1 2&nbsp;<br>
+0 2 1<br>
+7<br>
+1 2 4 5 3 6 7<br>
+1 3 7 6 2 5 4<br>
+<strong>Output:</strong><br>
+1 0 2&nbsp;<br>
+4 2 5 1 6 3 7&nbsp;</span><br>
+&nbsp;</p>
+</div>
