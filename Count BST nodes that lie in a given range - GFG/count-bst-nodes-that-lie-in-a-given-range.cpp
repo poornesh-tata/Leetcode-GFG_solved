@@ -92,8 +92,15 @@ public:
       // your code goes here 
       if(root==NULL) return 0;
       int count=0;
-      if(root->data>=l and root->data<=h) count++;
-      return getCount(root->left,l,h)+getCount(root->right,l,h)+count;
+      if(root->data>=l and root->data<=h) 
+      {
+          count++;
+          count+=getCount(root->left,l,h);
+          count+=getCount(root->right,l,h);
+      }
+      else if(root->data<l) count+=getCount(root->right,l,h);
+      else if(root->data>h) count+=getCount(root->left,l,h);
+      return count;
     }
 };
 
