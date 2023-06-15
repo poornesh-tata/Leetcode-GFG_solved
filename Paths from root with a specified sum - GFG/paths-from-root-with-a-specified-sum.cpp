@@ -103,7 +103,11 @@ class Solution
         
         v.push_back(root->key);
         sum-=root->key;
-        if(sum==0) ans.push_back(v);
+        if(sum==0)
+        {
+            ans.push_back(v);
+            return ;
+        }
         
         if(root->left)
         {
