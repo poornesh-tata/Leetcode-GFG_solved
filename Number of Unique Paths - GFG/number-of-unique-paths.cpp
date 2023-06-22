@@ -30,8 +30,8 @@ class Solution
     int NumberOfPath(int a, int b)
     {
         vector<vector<int>> dp(a+1,vector<int>(b+1,-1));
-        fun(0,0,a,b,dp);
-        return dp[0][0];
+        return fun(0,0,a,b,dp);
+        // return dp[0][0];
     }
 };
 
