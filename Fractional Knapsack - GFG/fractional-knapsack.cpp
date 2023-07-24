@@ -25,30 +25,29 @@ class Solution
     double fractionalKnapsack(int W, Item arr[], int n)
     {
         // Your code here
-        double ans=0;
-        vector<pair<double,int>> v;
+        vector<pair<double,int>> v; 
         for(int i=0;i<n;i++)
         {
-            v.push_back({((double)arr[i].value/arr[i].weight),i});
+            v.push_back({(double)arr[i].value/arr[i].weight,i});
         }
         sort(v.begin(),v.end());
-        reverse(v.begin(),v.end());
-        
-        for(auto it:v)
+        double ans = 0;
+        for(int i=n-1;i>=0;i--)
         {
-            if(arr[it.second].weight <= W)
+            if(arr[v[i].second].weight <= W)
             {
-                W=W-arr[it.second].weight;
-                ans+=arr[it.second].value;
+                ans += arr[v[i].second].value;
+                W -= arr[v[i].second].weight;
             }
             else
             {
-                ans+=((double)W*arr[it.second].value)/arr[it.second].weight;
+                ans += v[i].first*W;
                 break;
             }
         }
         return ans;
     }
+        
 };
 
 
