@@ -25,13 +25,13 @@ public:
             i--;
             j++;
         }
-        i=row,j=col;
-        while(i<n and j<n) //bottom-right
-        {
-            if(temp[i] == j+1) return false;
-            i++;
-            j++;
-        }
+        // i=row,j=col;
+        // while(i<n and j<n) //bottom-right
+        // {
+        //     if(temp[i] == j+1) return false;
+        //     i++;
+        //     j++;
+        // }
         i=row,j=col;
         while(i>=0 and j>=0) //top-left
         {
@@ -39,13 +39,13 @@ public:
             i--;
             j--;
         }
-        i=row,j=col;
-        while(i<n and j>=0) //bottom-left
-        {
-            if(temp[i] == j+1) return false;
-            i++;
-            j--;
-        }
+        // i=row,j=col;
+        // while(i<n and j>=0) //bottom-left
+        // {
+        //     if(temp[i] == j+1) return false;
+        //     i++;
+        //     j--;
+        // }
         
         return true;
     }
