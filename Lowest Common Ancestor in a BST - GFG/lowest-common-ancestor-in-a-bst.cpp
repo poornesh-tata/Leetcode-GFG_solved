@@ -35,12 +35,7 @@ class Solution{
             {
                 right = LCA(root->right,n1,n2);
             }
-            else
-            {
-                return root;
-                left = LCA(root->left,n1,n2);
-                right = LCA(root->right,n1,n2);
-            }
+            else return root;
             if(left==NULL) return right;
             if(right==NULL) return left;
             return root;
