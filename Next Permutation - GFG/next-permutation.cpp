@@ -16,38 +16,21 @@ public:
         {
             if(arr[i]>arr[i-1]) break;
         }
-        // cout<<i<<endl;
         if(i<=0)
         {
             reverse(arr.begin(),arr.end());
             return arr;
         }
         
-        priority_queue<pair<int,int>> pq1,pq2;
-        pq1.push({arr[i-1],i-1});
+        priority_queue<pair<int,int>> pq;
         for(int j=i;j<N;j++)
         {
-            if(arr[j]>arr[i-1]) pq1.push({arr[j],j});
-            if(arr[j]>arr[i]) pq2.push({arr[j],j});
-            if(pq1.size()>2) pq1.pop();
-            if(pq2.size()>2) pq2.pop();
+            if(arr[j]>arr[i-1]) pq.push({arr[j],j});
+            if(pq.size()>1) pq.pop();
         }
-        if(pq2.size()<2)
-        {
-            auto x = pq1.top(); pq1.pop();
-            auto y = pq1.top(); pq1.pop();
-            // cout<<x.second<<" "<<y.second<<" 1"<<endl;
-            swap(arr[x.second],arr[y.second]);
-            sort(arr.begin()+i,arr.end());
-        }
-        else
-        {
-            auto x = pq2.top(); pq2.pop();
-            auto y = pq2.top(); pq2.pop();
-            // cout<<x.second<<" "<<y.second<<" 2"<<endl;
-            swap(arr[x.second],arr[y.second]);
-            sort(arr.begin()+i+1,arr.end());
-        }
+        auto x = pq.top(); pq.pop();
+        swap(arr[i-1],arr[x.second]);
+        sort(arr.begin()+i,arr.end());
         return arr;
     }
 };
